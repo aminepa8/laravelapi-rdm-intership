@@ -24,6 +24,6 @@ Route::middleware('jwt.auth')->get('/users', function (Request $request) {
     return auth()->user();
 });
 
-Route::group('intervention', function(){
-    Route::resource('API\InterventionController');
-});
+/*Route::group(function(){
+    Route::resources('intervention','API\InterventionController');
+});*/
