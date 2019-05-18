@@ -1,6 +1,9 @@
 <?php
-
-class MaterielController extends BaseController {
+namespace App\Http\Controllers\API;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
+use App\Http\Controllers\Controller as BaseController;
+class MaterielController extends BaseController  {
 
     /**
      * Display a listing of the resource.
@@ -9,7 +12,13 @@ class MaterielController extends BaseController {
      */
     public function index()
     {
-        //
+        // get all the materiels
+        $materiels =DB::table('Materiel')->get();
+
+        // load the view and pass the nerds
+     
+        return View::make('index')
+            ->with('materiels', $materiels);
     }
 
     /**
