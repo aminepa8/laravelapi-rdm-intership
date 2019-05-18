@@ -24,6 +24,7 @@ Route::middleware('jwt.auth')->get('/users', function (Request $request) {
     return auth()->user();
 });
 
-/*Route::group(function(){
-    Route::resources('intervention','API\InterventionController');
-});*/
+Route::match(['get', 'post'], 'intervention', function (){
+    Route::resource('intervention','API\InterventionController');
+}); 
+Route::resource('materiel', 'API\MaterielController');
