@@ -115,7 +115,12 @@ class MaterielController extends BaseController  {
      */
     public function edit($id)
     {
-        //
+        // get the nerd
+        $materiel =  DB::table('Materiel')->where('id_materiel',$id)->first();
+
+        // show the edit form and pass the nerd
+        return View::make('edit')
+        ->with('materiel', $materiel);
     }
 
     /**
@@ -126,7 +131,51 @@ class MaterielController extends BaseController  {
      */
     public function update($id)
     {
-        //
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'id_materiel' => 'required',
+            'type' => 'required',
+            'modele'=> 'required',
+            'N_serie'=> 'required',
+            'id_utilisateur'=>'required',   
+            'id_agence_fk'=>'required',
+            'id_departement_fk'=>'required',
+            'date_livraison'=>'required',
+            'id_fournisseurs'=>'required',
+            'marche'=>'required',
+            'etat'=>'required', 
+      
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('api/materiel/' . $id . '/edit')
+                ->withErrors($validator)
+                ->withInput(Input::all());
+        } else {
+            // store
+            DB::table('Materiel')
+            ->where('id_materiel',$id)
+            ->update([
+            'id_materiel'  => Input::get('id_materiel'),
+            'type'  => Input::get('type'),
+            'modele' => Input::get('modele'),
+            'N_serie' => Input::get('N_serie'),
+            'id_utilisateur' => Input::get('id_utilisateur'),
+            'id_agence_fk' => Input::get('id_agence_fk'),
+            'id_departement_fk' => Input::get('id_departement_fk'),
+            'date_livraison' => Input::get('date_livraison'),
+            'id_fournisseurs' => Input::get('id_fournisseurs'),
+           'marche' => Input::get('marche'),
+           'etat' => Input::get('etat')
+           ]);
+
+            // redirect
+            Session::flash('message', 'Successfully updated Asset!');
+            return Redirect::to('api/materiel');
+        }
     }
 
     /**
