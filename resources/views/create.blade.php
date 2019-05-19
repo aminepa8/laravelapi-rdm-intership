@@ -86,7 +86,7 @@
         {{ Form::select('etat', array('ok' => 'ok', 'En Panne' => 'En Panne', 'Reformee' => 'Reformee', 'A Redeployer' => 'A Redeployer'), Input::old('etat'), array('class' => 'form-control')) }}
     </div>
 
-    {{ Form::submit('Create Materirl!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Add Materiel', array('class' => 'btn btn-primary')) }}
 
 {{ Form::close() }}
 

@@ -8,6 +8,7 @@ use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Controller as BaseController;
 use App\Materiel;
 use Validator;
+use Session;
 class MaterielController extends BaseController  {
 
     /**
@@ -18,12 +19,12 @@ class MaterielController extends BaseController  {
     public function index()
     {
         // get all the materiels
-        $materiels =DB::table('Materiel')->get();
+        $materiel =DB::table('Materiel')->get();
 
         // load the view and pass the nerds
      
         return View::make('index')
-            ->with('materiels', $materiels);
+            ->with('materiel', $materiel);
     }
 
     /**
@@ -69,19 +70,19 @@ class MaterielController extends BaseController  {
                 ->withInput(Input::all());
         } else {
             // store
-            $Materiel = new Materiel;
-            $Materiel->id_materiel  = Input::get('id_materiel');
-            $Materiel->type  = Input::get('type');
-            $Materiel->modele = Input::get('modele');
-            $Materiel->N_serie = Input::get('N_serie');
-            $Materiel->id_utilisateur = Input::get('id_utilisateur');
-            $Materiel->id_agence_fk = Input::get('id_agence_fk');
-            $Materiel->id_departement_fk = Input::get('id_departement_fk');
-            $Materiel->date_livraison = Input::get('date_livraison');
-            $Materiel->id_fournisseurs = Input::get('id_fournisseurs');
-            $Materiel->marche = Input::get('marche');
-            $Materiel->etat = Input::get('etat');
-            $Materiel->save();
+            DB::table('Materiel')->insert([
+                'id_materiel'  => Input::get('id_materiel'),
+                'type'  => Input::get('type'),
+                'modele' => Input::get('modele'),
+                'N_serie' => Input::get('N_serie'),
+                'id_utilisateur' => Input::get('id_utilisateur'),
+                'id_agence_fk' => Input::get('id_agence_fk'),
+                'id_departement_fk' => Input::get('id_departement_fk'),
+                'date_livraison' => Input::get('date_livraison'),
+                'id_fournisseurs' => Input::get('id_fournisseurs'),
+               'marche' => Input::get('marche'),
+               'etat' => Input::get('etat')
+            ]);
 
             // redirect
             Session::flash('message', 'Successfully created Materiel!');

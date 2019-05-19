@@ -43,7 +43,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($materiels as $key => $value)
+    @foreach($materiel as $key => $value)
         <tr>
             <td>{{ $value->id_materiel }}</td>
             <td>{{ $value->type }}</td>
