@@ -19,7 +19,7 @@ class MaterielController extends BaseController  {
     public function index()
     {
         // get all the materiels
-        $materiel =DB::table('Materiel')->get();
+        $materiel = DB::table('Materiel')->get();
 
         // load the view and pass the nerds
      
@@ -96,15 +96,15 @@ class MaterielController extends BaseController  {
      * @param  int  $id
      * @return Response
      */
-    /*public function show($id)
+    public function show($id)
     {
         // get the nerd
-        $Materiel = Materiel::find($id);
+        $materiel =  DB::table('Materiel')->where('id_materiel',$id)->first();
 
         // show the view and pass the nerd to it
         return View::make('show')
-            ->with('Materiel', $Materiel);
-    }*/
+            ->with('materiel', $materiel);
+    }
 
 
     /**
