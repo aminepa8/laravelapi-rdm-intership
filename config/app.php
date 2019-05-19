@@ -146,7 +146,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        // what I just add
+        Collective\Html\HtmlServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -211,7 +212,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth'=>'Tymon\JWTAuth\Facades\JWTAuth',
         'JWTFactory'=>'Tymon\JWTAuth\Facades\JWTFactory',
-
+        //what I just add
+        'Form' => Collective\Html\FormFacade::class,
+        'HTML' => Collective\Html\HtmlFacade::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
     ],
 
 ];

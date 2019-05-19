@@ -14,8 +14,8 @@
         <a class="navbar-brand" href="{{ URL::to('materiel') }}">Nerd Alert</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('materiel') }}">View All Nerds</a></li>
-        <li><a href="{{ URL::to('materiel/create') }}">Create a Nerd</a>
+        <li><a href="{{ URL::to('api/materiel') }}">View All Nerds</a></li>
+        <li><a href="{{ URL::to('api/materiel/create') }}">Create a Nerd</a>
     </ul>
 </nav>
 
@@ -64,10 +64,10 @@
                 <!-- we will add this later since its a little more complicated than the other two buttons -->
 
                 <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('materiel/' . $value->id_materiel) }}">Show this Nerd</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('api/materiel/' . $value->id_materiel) }}">Show this Nerd</a>
 
                 <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('materiel/' . $value->id_materiel . '/edit') }}">Edit this Nerd</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('api/materiel/' . $value->id_materiel . '/edit') }}">Edit this Nerd</a>
 
             </td>
         </tr>
