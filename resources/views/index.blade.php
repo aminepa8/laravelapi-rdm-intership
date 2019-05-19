@@ -62,12 +62,15 @@
 
                 <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
                 <!-- we will add this later since its a little more complicated than the other two buttons -->
-
+                {{ Form::open(array('url' => 'api/materiel/' . $value->id_materiel, 'class' => 'pull-right')) }}
+                {{ Form::hidden('_method', 'DELETE') }}
+                {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                {{ Form::close() }}
                 <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('api/materiel/' . $value->id_materiel) }}">Show this Asset</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('api/materiel/' . $value->id_materiel) }}">Show</a>
 
                 <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('api/materiel/' . $value->id_materiel . '/edit') }}">Edit this Asset</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('api/materiel/' . $value->id_materiel . '/edit') }}">Edit</a>
 
             </td>
         </tr>

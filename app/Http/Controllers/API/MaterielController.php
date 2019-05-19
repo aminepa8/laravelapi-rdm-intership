@@ -186,7 +186,11 @@ class MaterielController extends BaseController  {
      */
     public function destroy($id)
     {
-        //
+        DB::table('Materiel')->where('id_materiel',$id)->delete();
+
+         // redirect
+         Session::flash('message', 'Successfully deleted Asset!');
+         return Redirect::to('api/materiel');
     }
 
 }
