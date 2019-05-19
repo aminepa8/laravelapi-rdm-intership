@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Look! I'm CRUDding</title>
+    <title>Assets Management</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -11,11 +11,11 @@
 
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{ URL::to('api/materiel') }}">Nerd Alert</a>
+        <a class="navbar-brand" href="{{ URL::to('api/materiel') }}">Home</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('api/materiel') }}">View All Nerds</a></li>
-        <li><a href="{{ URL::to('api/materiel/create') }}">Create a Nerd</a>
+        <li><a href="{{ URL::to('api/materiel') }}">View All Assets</a></li>
+        <li><a href="{{ URL::to('api/materiel/create') }}">Add new Asset</a>
     </ul>
 </nav>
 
@@ -64,10 +64,10 @@
                 <!-- we will add this later since its a little more complicated than the other two buttons -->
 
                 <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('api/materiel/' . $value->id_materiel) }}">Show this Nerd</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('api/materiel/' . $value->id_materiel) }}">Show this Asset</a>
 
                 <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('api/materiel/' . $value->id_materiel . '/edit') }}">Edit this Nerd</a>
+                <a class="btn btn-small btn-info" href="{{ URL::to('api/materiel/' . $value->id_materiel . '/edit') }}">Edit this Asset</a>
 
             </td>
         </tr>
