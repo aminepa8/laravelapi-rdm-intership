@@ -1,10 +1,12 @@
-<!-- app/views/nerds/edit.blade.php -->
+<!-- app/views/edit.blade.php -->
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Edit Asset</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+     <!-- Scripts -->
+     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body>
 <div class="container">
@@ -17,6 +19,25 @@
         <li><a href="{{ URL::to('materiel') }}">View All Assets</a></li>
         <li><a href="{{ URL::to('materiel/create') }}">Add new Asset</a>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }} <span class="caret"></span>
+                </a>
+    
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+    
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        </ul>
 </nav>
 
 <h1>Edit Materiel Barcode : {{ $materiel->id_materiel }}</h1>
@@ -31,10 +52,10 @@
         </ul>
     </div>
 @endif
-
+<div class="col-md-6">
 {{ Form::model($materiel, array('route' => array('materiel.update', $materiel->id_materiel), 'method' => 'PUT')) }}
 
-    <div class="form-group">
+    <div class="form-group hidden">
         {{ Form::label('id_materiel', 'id_materiel') }}
         {{ Form::text('id_materiel', null, array('class' => 'form-control')) }}
     </div>
@@ -48,27 +69,51 @@
         {{ Form::text('modele', null, array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
-        {{ Form::label('N_serie', 'N_serie') }}
+        {{ Form::label('N_serie', 'Numero serie') }}
         {{ Form::text('N_serie', null, array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
-        {{ Form::label('id_utilisateur', 'id_utilisateur') }}
+        {{ Form::label('id_utilisateur', 'Utilisateur') }}
         {{ Form::text('id_utilisateur', null, array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
-        {{ Form::label('id_agence_fk', 'id_agence_fk') }}
-        {{ Form::text('id_agence_fk', null, array('class' => 'form-control')) }}
+        {{ Form::label('id_agence_fk', 'Agence') }}
+        {{ Form::select('id_agence_fk', array('0' => 'RADEM SIEGE',
+                '1' => 'SBATA',
+                '2' => 'BASSATINE',
+                '3' => 'SIDI BABA',
+                '4' => 'ELMENZEH',
+                '5' => 'MEDINA',
+                '6' => 'WISLANE',
+                '7' => 'SBZ',
+                '8' => 'MANSOUR',
+                '9' => 'BELLE VUE',
+                '10' => 'POSTE 50',
+                '11' => 'DKHISSA',
+                '11' => 'RIAD ZITOUNE',), 
+               Input::old('id_agence_fk'), array('class' => 'form-control')) }}
     </div>
+</div>
+<div class="col-md-6">
     <div class="form-group">
-        {{ Form::label('id_departement_fk', 'id_departement_fk') }}
-        {{ Form::text('id_departement_fk', null, array('class' => 'form-control')) }}
-    </div>
+        {{ Form::label('id_departement_fk', 'Departement') }}
+        {{ Form::select('id_departement_fk', array('0' => 'AFFAIRES ADMINISTRATIVES & JURIDIQUES', 
+        '1' => 'FINANCIER ET COMPTABLE',
+        '2' => 'CLIENTELE ET MARKETING', 
+        '4' => 'LOGISTIQUE',
+        '5' => 'EXPLOITATION ELECTRICITE',
+        '6' => 'EXPLOITATIONS EAU ET ASSAINISSEMENT',
+        '7' => 'INVESTISSEMENTS',
+        '8' => 'AUDIT ET CONTRÔLE DE GESTION',
+        '9' => 'SYSTEME D\'INFORMATION'), 
+        Input::old('id_departement_fk'), array('class' => 'form-control')) }}
+        </div>
     <div class="form-group">
-        {{ Form::label('date_livraison', 'date_livraison') }}
+        {{ Form::label('date_livraison', 'Date de livraison') }}
         {{ Form::text('date_livraison', null, array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
-        {{ Form::label('id_fournisseurs', 'id_fournisseurs') }}
+        {{ Form::label('id_fournisseurs', 'Fournisseurs') }}
         {{ Form::text('id_fournisseurs', null, array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
@@ -77,14 +122,14 @@
     </div>
 
    <div class="form-group">
-        {{ Form::label('etat', 'etat') }}
-        {{ Form::select('etat', array('ok' => 'ok', 'En Panne' => 'En Panne', 'Reformee' => 'Reformee', 'A Redeployer' => 'A Redeployer'), Input::old('etat'), array('class' => 'form-control')) }}
+        {{ Form::label('etat', 'Etat') }}
+        {{ Form::select('etat', array('Active' => 'Active', 'En Panne' => 'En Panne', 'Reformee' => 'Reformee', 'A Redeployer' => 'A Redeployer'), Input::old('etat'), array('class' => 'form-control')) }}
     </div>
-
+</div>
+<div class="text-center">
     {{ Form::submit('Edit the Asset!', array('class' => 'btn btn-primary')) }}
-
+</div>
 {{ Form::close() }}
-
 </div>
 </body>
 </html>

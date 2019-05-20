@@ -22,9 +22,12 @@ class MaterielController extends BaseController  {
     public function index()
     {
         // get all the materiels
-        $materiel = DB::table('Materiel')->get();
+       // $materiel = DB::table('Materiel')->get();
+       $materiel = DB::select('select id_materiel,type,modele,N_serie,id_utilisateur,label_agence,label_departement,date_livraison,id_fournisseurs,marche,etat
+       from materiel ,agence,departement 
+       where id_departement_fk = id_departement and materiel.id_agence_fk = id_agence');
 
-        // load the view and pass the nerds
+        // load the view and pass the materiels
      
         return View::make('index')
             ->with('materiel', $materiel);
@@ -68,7 +71,7 @@ class MaterielController extends BaseController  {
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('api/materiel/create')
+            return Redirect::to('materiel/create')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         } else {
@@ -89,7 +92,7 @@ class MaterielController extends BaseController  {
 
             // redirect
             Session::flash('message', 'Successfully created Materiel!');
-            return Redirect::to('api/materiel');
+            return Redirect::to('materiel');
         }
     }
 
@@ -154,7 +157,7 @@ class MaterielController extends BaseController  {
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('api/materiel/' . $id . '/edit')
+            return Redirect::to('materiel/' . $id . '/edit')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         } else {
@@ -177,7 +180,7 @@ class MaterielController extends BaseController  {
 
             // redirect
             Session::flash('message', 'Successfully updated Asset!');
-            return Redirect::to('api/materiel');
+            return Redirect::to('materiel');
         }
     }
 
@@ -193,7 +196,7 @@ class MaterielController extends BaseController  {
 
          // redirect
          Session::flash('message', 'Successfully deleted Asset!');
-         return Redirect::to('api/materiel');
+         return Redirect::to('materiel');
     }
 
 }

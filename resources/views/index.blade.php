@@ -1,12 +1,17 @@
-<!-- app/views/materil/index.blade.php -->
+<!-- app/views/index.blade.php -->
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Assets Management</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <style>
+    .btn{
+        margin-bottom:3px;
+    }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -72,8 +77,8 @@
             <td>{{ $value->modele }}</td>
             <td>{{ $value->N_serie }}</td>
             <td>{{ $value->id_utilisateur }}</td>
-            <td>{{ $value->id_agence_fk }}</td>
-            <td>{{ $value->id_departement_fk }}</td>
+            <td>{{ $value->label_agence }}</td>
+            <td>{{ $value->label_departement }}</td>
             <td>{{ $value->date_livraison }}</td>
             <td>{{ $value->id_fournisseurs }}</td>
             <td>{{ $value->marche }}</td>
@@ -88,9 +93,10 @@
                 {{ Form::hidden('_method', 'DELETE') }}
                 {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                 {{ Form::close() }}
+                <br>
                 <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
                 <a class="btn btn-small btn-success" href="{{ URL::to('materiel/' . $value->id_materiel) }}">Show</a>
-
+                <br>
                 <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
                 <a class="btn btn-small btn-info" href="{{ URL::to('materiel/' . $value->id_materiel . '/edit') }}">Edit</a>
 
