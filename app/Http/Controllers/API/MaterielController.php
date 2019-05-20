@@ -10,7 +10,10 @@ use App\Materiel;
 use Validator;
 use Session;
 class MaterielController extends BaseController  {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Look! I'm CRUDding</title>
+    <title>Edit Asset</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -11,11 +11,11 @@
 
 <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{ URL::to('api/materiel') }}">Home</a>
+        <a class="navbar-brand" href="{{ URL::to('materiel') }}">Home</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('api/materiel') }}">View All Assets</a></li>
-        <li><a href="{{ URL::to('api/materiel/create') }}">Add new Asset</a>
+        <li><a href="{{ URL::to('materiel') }}">View All Assets</a></li>
+        <li><a href="{{ URL::to('materiel/create') }}">Add new Asset</a>
     </ul>
 </nav>
 
