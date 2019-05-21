@@ -5,8 +5,10 @@
 <head>
     <title>Assets Management</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+ 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.4.0.min.js') }}"></script>
     <style>
     .btn{
         margin-bottom:3px;
@@ -89,9 +91,9 @@
 
                 <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
                 <!-- we will add this later since its a little more complicated than the other two buttons -->
-                {{ Form::open(array('url' => 'materiel/' . $value->id_materiel, 'class' => 'pull-right')) }}
+                {{ Form::open(array('id'=>'delete-form','url' => 'materiel/' . $value->id_materiel, 'class' => 'pull-right')) }}
                 {{ Form::hidden('_method', 'DELETE') }}
-                {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                {{ Form::submit('Delete', array('class' => 'btn btn-danger','onclick' => 'confirm();')) }}
                 {{ Form::close() }}
                 <br>
                 <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
@@ -107,5 +109,28 @@
 </table>
 
 </div>
+<script src="{{ asset('sweetalert/dist/sweetalert.min.js') }}"></script>
+<script>
+    function confirm(){
+        event.preventDefault();
+        swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this Asset !",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal("The Asset has been deleted!", {
+      icon: "success",
+      buttons: false,
+    });
+    document.getElementById('delete-form').submit();
+  }
+});
+} 
+    
+</script>
 </body>
 </html>

@@ -18,5 +18,9 @@
         "laravel-mix": "^2.0",
         "lodash": "^4.17.4",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "sweetalert": "^2.1.2",
+        "sweetalert2": "^8.11.1"
     }
 }
