@@ -69,13 +69,24 @@ class MaterielController extends BaseController  {
         );
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
+        // process the creation
         if ($validator->fails()) {
             return Redirect::to('materiel/create')
                 ->withErrors($validator)
                 ->withInput(Input::all());
         } else {
-            // store
+            //check if the barcode is unique
+            $barcode = DB::table('Materiel')
+            ->where('id_materiel','=',Input::get('id_materiel'))
+            ->count('*');
+
+            if ($barcode > 0){
+                return Redirect::to('materiel/create')
+                    ->withErrors("Barcode already exist")
+                    ->withInput(Input::all());
+            }
+            // store new materiel
+            else{
             DB::table('Materiel')->insert([
                 'id_materiel'  => Input::get('id_materiel'),
                 'type'  => Input::get('type'),
@@ -93,6 +104,7 @@ class MaterielController extends BaseController  {
             // redirect
             Session::flash('message', 'Successfully created Materiel!');
             return Redirect::to('materiel');
+            }
         }
     }
 
