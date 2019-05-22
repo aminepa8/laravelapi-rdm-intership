@@ -28,6 +28,7 @@
         <li><a href="{{ URL::to('materiel/create') }}">Add new Asset</a></li>
         <li><a href="{{ URL::to('generate') }}">Session</a></li>
         <li><a href="{{ URL::to('intervention') }}">Intervention</a></li>
+        <li><a href="{{ URL::to('sessioninfo') }}">Session information</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
             <li class="nav-item dropdown">

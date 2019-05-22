@@ -17,7 +17,7 @@ class GenerateController extends BaseController  {
 public function index()
     {
         $Session = DB::table('session')->get();
-               return View::make('generate') ->with('Session', $Session);;
+               return View::make('generate') ->with('Session', $Session);
     }
 
     public function create(){
