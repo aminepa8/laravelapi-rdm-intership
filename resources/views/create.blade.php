@@ -5,6 +5,14 @@
 <head>
     <title>Assets Management</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
+    <link  rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">  
+
+    <script src="{{ asset('js/jquery.js') }}"></script>  
+
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>  
+
+    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>  
      <!-- Scripts -->
      <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
@@ -116,7 +124,7 @@
     </div>
     <div class="form-group">
         {{ Form::label('date_livraison', 'Date de livraison') }}
-        {{ Form::text('date_livraison', Input::old('date_livraison'), array('class' => 'form-control')) }}
+        {{ Form::text('date_livraison', Input::old('date_livraison'), array('class' => 'date form-control')) }}
     </div>
     <div class="form-group">
         {{ Form::label('id_fournisseurs', 'Fournisseurs') }}
@@ -144,7 +152,15 @@
 </div>
 {{ Form::close() }}
 
+<script type="text/javascript">  
 
+    $('.date').datepicker({  
+
+       format: 'yyyy-mm-dd'  
+
+     });  
+
+</script>  
 
 </div>
 </div>
