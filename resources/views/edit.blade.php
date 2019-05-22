@@ -17,7 +17,9 @@
     </div>
     <ul class="nav navbar-nav">
         <li><a href="{{ URL::to('materiel') }}">View All Assets</a></li>
-        <li><a href="{{ URL::to('materiel/create') }}">Add new Asset</a>
+        <li><a href="{{ URL::to('materiel/create') }}">Add new Asset</a></li>
+        <li><a href="{{ URL::to('generate') }}">Session</a></li>
+        <li><a href="{{ URL::to('intervention') }}">Intervention</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
             <li class="nav-item dropdown">

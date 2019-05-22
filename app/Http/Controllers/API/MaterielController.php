@@ -210,5 +210,7 @@ class MaterielController extends BaseController  {
          Session::flash('message', 'Successfully deleted Asset!');
          return Redirect::to('materiel');
     }
+    
 
 }
+

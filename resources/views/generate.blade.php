@@ -1,4 +1,3 @@
-<!-- app/views/nerds/show.blade.php -->
 
 <!DOCTYPE html>
 <html>
@@ -41,24 +40,45 @@
             </li>
         </ul>
 </nav>
+        
+    <div class="col-md-6">
+            <h3>Session code generator</h3>
+        <div class="card-body">
+                    {{ Form::open(array('class' => 'form-inline','url' => 'generate')) }}
+                    <div class="form-group mx-sm-3 mb-2">
+                    <input type="text" class="form-control " disabled placeholder="Session code" 
+                    value="@if(session('genCode')) {{session('genCode')}} @endif">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Generate Session Code</button>
+                    {{ Form::close() }}
+        </div>
 
-<h1>Barcode : {{ $materiel->id_materiel }}</h1>
-
-<div class="card-body">
-        <p>
-             <strong>type:</strong>{{ $materiel->type }} <br>
-             <strong>modele:</strong>{{ $materiel->modele }} <br>
-             <strong>Numero serie:</strong>{{ $materiel->N_serie }} <br>
-             <strong>Utilisateur:</strong>{{ $materiel->id_utilisateur }} <br>
-             <strong>Agence:</strong>{{ $materiel->id_agence_fk }} <br>
-             <strong>Departement:</strong>{{ $materiel->id_departement_fk }} <br>
-             <strong>Date de livraison:</strong>{{ $materiel->date_livraison }} <br>
-             <strong>Fournisseurs:</strong>{{ $materiel->id_fournisseurs }} <br>
-             <strong>Marche:</strong>{{ $materiel->marche }} <br>
-             <strong>Etat:</strong>{{ $materiel->etat }} 
-        </p>
+    </div>
+    <div class="col-md-6">
+        <h3>Session List</h3>
+            <table class="table table-striped table-bordered">
+                    @if (isset($Session))
+                    <thead>
+                        <tr>
+                            <td>Code Session</td>
+                            <td>Date</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                            @foreach($Session as $key => $value)
+                                <tr>
+                                    <td>{{ $value->code_session }}</td>
+                                    <td>{{ $value->date_session }}</td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    
+                    </tbody>
+                </table>
     </div>
 
+</div>
 </div>
 </body>
 </html>
