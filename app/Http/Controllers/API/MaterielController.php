@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller as BaseController;
 use App\Materiel;
 use Validator;
@@ -117,8 +118,12 @@ class MaterielController extends BaseController  {
     public function show($id)
     {
         // get the nerd
-        $materiel =  DB::table('Materiel')->where('id_materiel',$id)->first();
+        $materiels = collect(DB::select("select id_materiel,type,modele,N_serie,id_utilisateur,
+        label_agence,label_departement,date_livraison,id_fournisseurs,marche,etat
+       from materiel ,agence,departement 
+       where id_departement_fk = id_departement and materiel.id_agence_fk = id_agence and id_materiel =$id"));
 
+       $materiel = $materiels->all();
         // show the view and pass the nerd to it
         return View::make('show')
             ->with('materiel', $materiel);

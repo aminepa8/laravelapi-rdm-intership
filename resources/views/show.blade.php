@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
      <!-- Scripts -->
      <script src="{{ asset('js/app.js') }}" defer></script>
+     <script src="{{ asset('js/jquery-3.4.0.min.js') }}"></script>
 </head>
 <body>
 <div class="container">
@@ -42,21 +43,54 @@
         </ul>
 </nav>
 
-<h1>Barcode : {{ $materiel->id_materiel }}</h1>
+<h1>Barcode : {{ $materiel[0]->id_materiel }}</h1>
 
-<div class="card-body">
-        <p>
-             <strong>type:</strong>{{ $materiel->type }} <br>
-             <strong>modele:</strong>{{ $materiel->modele }} <br>
-             <strong>Numero serie:</strong>{{ $materiel->N_serie }} <br>
-             <strong>Utilisateur:</strong>{{ $materiel->id_utilisateur }} <br>
-             <strong>Agence:</strong>{{ $materiel->id_agence_fk }} <br>
-             <strong>Departement:</strong>{{ $materiel->id_departement_fk }} <br>
-             <strong>Date de livraison:</strong>{{ $materiel->date_livraison }} <br>
-             <strong>Fournisseurs:</strong>{{ $materiel->id_fournisseurs }} <br>
-             <strong>Marche:</strong>{{ $materiel->marche }} <br>
-             <strong>Etat:</strong>{{ $materiel->etat }} 
-        </p>
+    <div class="card-body">
+            <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>type:</th>
+                            <td>   {{ $materiel[0]->type }} </td>
+                        </tr>
+                        <tr>
+                            <th>modele:</th>
+                            <td>{{ $materiel[0]->modele }} </td>
+                        </tr>
+                        <tr>
+                            <th>Numero serie:</th>
+                            <td>{{ $materiel[0]->N_serie }} </td>
+                        </tr>
+                        <tr>
+                            <th>Utilisateur:</th>
+                            <td>{{ $materiel[0]->id_utilisateur }} </td>
+                        </tr>
+                        <tr>
+                            <th>Agence:</th>
+                            <td>{{ $materiel[0]->label_agence }} </td>
+                        </tr>
+                        <tr>
+                            <th>Departement:</th>
+                            <td>{{ $materiel[0]->label_departement }} </td>
+                        </tr>
+                        <tr>
+                            <th>Date de livraison:</th>
+                            <td>{{ $materiel[0]->date_livraison }} </td>
+                        </tr>
+                        <tr>
+                            <th>Fournisseurs:</th>
+                            <td>{{ $materiel[0]->id_fournisseurs }} </td>
+                        </tr>
+                        <tr>
+                            <th>Marche:</th>
+                            <td>{{ $materiel[0]->marche }} </td>
+                        </tr>
+                        <tr>
+                            <th>Etat:</th>
+                            <td>{{ $materiel[0]->etat }} </td>
+                        </tr>
+               </tbody>
+            </table>
+       
     </div>
 
 </div>
