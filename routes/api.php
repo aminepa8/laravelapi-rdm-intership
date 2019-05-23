@@ -25,8 +25,10 @@ Route::middleware('jwt.auth')->get('/users', function (Request $request) {
 });
 // Protected with APIToken Middleware
 Route::middleware('APIToken')->group(function () {
-    Route::get('interventions/{barcode}','API\InterventionController@show');
+    Route::get('interventions/{barcode}','API\InterventionController@show'); //check if the code bar exist
     Route::post('interventions','API\InterventionController@store');
+    Route::get('sessionetat/{sessioncode}','API\SessionController@show');
+    Route::post('sessionetat/','API\SessionController@update');
     
   });
 

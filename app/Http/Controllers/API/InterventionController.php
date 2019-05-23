@@ -32,7 +32,7 @@ class InterventionController extends BaseController
             return $this->sendError('0'); //0 mean the Barcode not found
          }
 
-         return $this->sendResponse('1','1');
+         return $this->sendResponse($barcode,'1');
     }
 
     public function store(Request $request)
