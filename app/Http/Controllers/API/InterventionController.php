@@ -53,6 +53,11 @@ class InterventionController extends BaseController
             'observation'=> $input['observation'], 
             'datepb' => $input['datepb']
             ]);
+            if (isset($input['etat'])) { //add an and condition to make sure that etat value = En Panne
+                DB::table('materiel')
+                ->where('id_materiel',  $input['id_materiel_fk'])
+                ->update(['etat' => $input['etat']]);
+            }
         return $this->sendResponse($input,'Observation added succesfully');
     }
 }
