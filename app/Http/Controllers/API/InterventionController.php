@@ -3,17 +3,25 @@
 
 namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\API\BaseController as BaseController;
 
 use App\Intervention;
 use Validator;
+use App\Materiel;
 
 
 class InterventionController extends BaseController 
 {
-    public function index()
+    public function show($barcode)
     {
-         
+         $materiel = DB::table('materiel')->where('id_materiel', $barcode)->first();
+
+         if (is_null($materiel)) {
+            return $this->sendError('0'); //0 mean the Barcode not found
+         }
+
+         return $this->sendResponse('1','1');
     }
 
     public function store(Request $request)
@@ -24,8 +32,12 @@ class InterventionController extends BaseController
         if ($validator->fails()) {
            return $this->sendError('error validation', $validator->errors());
         }
-        $intervention = Intervention::create($input);
-        return $this->sendResponse($input->toArray(),'Observation added succesfully');
+        $intervention = DB::table('intervention')->insert([
+            'id_materiel_fk'=> $input['id_materiel_fk'], 
+            'observation'=> $input['observation'], 
+            'datepb' => $input['datepb']
+            ]);
+        return $this->sendResponse($input,'Observation added succesfully');
     }
 }
 

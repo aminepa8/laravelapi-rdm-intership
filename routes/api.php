@@ -24,9 +24,12 @@ Route::middleware('jwt.auth')->get('/users', function (Request $request) {
     return auth()->user();
 });
 
-Route::match(['get', 'post'], 'intervention', function (){
-    Route::resource('intervention','API\InterventionController');
-}); 
+Route::get('interventions/{barcode}','API\InterventionController@show');
+Route::post('interventions','API\InterventionController@store');
+/*
+Route::match(['get', 'post'], 'interventions', function (){
+    Route::resource('interventions','API\InterventionController');
+}); */
 /*Route::group(['middleware' => 'web'], function () {
 Route::resource('materiel', 'API\MaterielController');
 });*/
