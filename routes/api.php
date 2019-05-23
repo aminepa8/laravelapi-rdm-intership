@@ -23,9 +23,13 @@ Route::post('user/login', 'APILoginController@login');
 Route::middleware('jwt.auth')->get('/users', function (Request $request) {
     return auth()->user();
 });
+// Protected with APIToken Middleware
+Route::middleware('APIToken')->group(function () {
+    Route::get('interventions/{barcode}','API\InterventionController@show');
+    Route::post('interventions','API\InterventionController@store');
+    
+  });
 
-Route::get('interventions/{barcode}','API\InterventionController@show');
-Route::post('interventions','API\InterventionController@store');
 /*
 Route::match(['get', 'post'], 'interventions', function (){
     Route::resource('interventions','API\InterventionController');

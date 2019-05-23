@@ -13,8 +13,19 @@ use App\Materiel;
 
 class InterventionController extends BaseController 
 {
-    public function show($barcode)
+   /* private $apiToken;
+    public function __construct()
     {
+      // Unique Token
+      $this->apiToken = 'amineamine';//uniqid(base64_encode(str_random(60))); amineamine is the token value
+    }*/
+    public function show(Request $request,$barcode)
+    {
+        $token = $request->header('Authorization');
+        $test = DB::table('apitoken')->where('api_token', $token)->first();
+        if (is_null($test)) {
+            return $this->sendError('API CODE invalide');
+        }
          $materiel = DB::table('materiel')->where('id_materiel', $barcode)->first();
 
          if (is_null($materiel)) {
@@ -26,6 +37,11 @@ class InterventionController extends BaseController
 
     public function store(Request $request)
     {
+        $token = $request->header('Authorization');
+        $test = DB::table('apitoken')->where('api_token', $token)->first();
+        if (is_null($test)) {
+            return $this->sendError('API CODE invalide');
+        }
         $input = $request ->all();
         $validator = Validator::make($input,['observation'=>'required']);
         
