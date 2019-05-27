@@ -22,14 +22,13 @@ class BaseController extends Controller
     public function sendError($error,$errorMessages=[] , $code=404){
 
         $response = [
-            'success' => false,
-            'data' =>'',
-            'message' =>$error
+            'success' => false ,
+            'message' => $error
         ];
-        if(!empty($errorMessages)){
-            $response['data'] = $errorMessages;
+        if (!empty($errorMessages)) {
+           
+            $response['date'] = $errorMessages;
         }
-
-         return response()->json($response,$code);
+        return response()->json($response , $code);
     }
 }
