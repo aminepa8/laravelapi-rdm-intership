@@ -23,6 +23,7 @@ class BaseController extends Controller
 
         $response = [
             'success' => false ,
+            'data'=>'',
             'message' => $error
         ];
         if (!empty($errorMessages)) {
