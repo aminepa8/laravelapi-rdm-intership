@@ -25,7 +25,7 @@ class SessionController extends BaseController
             return $this->sendError('0'); //0 mean the Sessioncode not found
          }
          $id_session = DB::select("select id_session from session where
-          code_session = ' $CodeSession'");
+          code_session = '$sessioncode'");
          return $this->sendResponse($CodeSession,$id_session);
     }
 
