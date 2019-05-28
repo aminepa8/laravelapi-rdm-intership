@@ -19,13 +19,14 @@ class SessionController extends BaseController
         if (is_null($test)) {
             return $this->sendError('API CODE invalide');
         }
-         $CodeSession = DB::table('session')->where('code_session', $sessioncode)->first();
-
+         //$CodeSession = DB::table('session')->where('code_session', $sessioncode)->first();
+         $CodeSession =  DB::select("select code_session from session where code_session ='$sessioncode'");
          if (is_null($CodeSession)) {
             return $this->sendError('0'); //0 mean the Sessioncode not found
          }
-
-         return $this->sendResponse($CodeSession,'1');
+         $id_session = DB::select("select id_session from session where
+          code_session = '$code'");
+         return $this->sendResponse($CodeSession,$id_session);
     }
 
     public function update(Request $request ) //using post method
