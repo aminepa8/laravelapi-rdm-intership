@@ -88,7 +88,8 @@
     </div>
     <div class="form-group">
         {{ Form::label('id_agence_fk', 'Agence') }}
-        {{ Form::select('id_agence_fk', array('0' => 'RADEM SIEGE',
+        {{ Form::select('id_agence_fk', array(
+                '0' => 'RADEM SIEGE',
                 '1' => 'SBATA',
                 '2' => 'BASSATINE',
                 '3' => 'SIDI BABA',
@@ -100,22 +101,23 @@
                 '9' => 'BELLE VUE',
                 '10' => 'POSTE 50',
                 '11' => 'DKHISSA',
-                '11' => 'RIAD ZITOUNE',), 
+                '12' => 'RIAD ZITOUNE',), 
                Input::old('id_agence_fk'), array('class' => 'form-control')) }}
     </div>
 </div>
 <div class="col-md-6">
     <div class="form-group">
         {{ Form::label('id_departement_fk', 'Departement') }}
-        {{ Form::select('id_departement_fk', array('0' => 'AFFAIRES ADMINISTRATIVES & JURIDIQUES', 
+        {{ Form::select('id_departement_fk', array(
+        '0' => 'AFFAIRES ADMINISTRATIVES & JURIDIQUES', 
         '1' => 'FINANCIER ET COMPTABLE',
         '2' => 'CLIENTELE ET MARKETING', 
-        '4' => 'LOGISTIQUE',
-        '5' => 'EXPLOITATION ELECTRICITE',
-        '6' => 'EXPLOITATIONS EAU ET ASSAINISSEMENT',
-        '7' => 'INVESTISSEMENTS',
-        '8' => 'AUDIT ET CONTRÔLE DE GESTION',
-        '9' => 'SYSTEME D\'INFORMATION'), 
+        '3' => 'LOGISTIQUE',
+        '4' => 'EXPLOITATION ELECTRICITE',
+        '5' => 'EXPLOITATIONS EAU ET ASSAINISSEMENT',
+        '6' => 'INVESTISSEMENTS',
+        '7' => 'AUDIT ET CONTRÔLE DE GESTION',
+        '8' => 'SYSTEME D\'INFORMATION'), 
         Input::old('id_departement_fk'), array('class' => 'form-control')) }}
         </div>
     <div class="form-group">
