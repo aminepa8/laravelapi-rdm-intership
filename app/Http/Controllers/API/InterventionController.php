@@ -26,13 +26,17 @@ class InterventionController extends BaseController
         if (is_null($test)) {
             return $this->sendError('API CODE invalide');
         }
-         $materiel = DB::table('materiel')->where('id_materiel', $barcode)->first();
+         $Check = DB::table('materiel')->where('id_materiel', $barcode)->first();
+        
 
-         if (is_null($materiel)) {
+         if (is_null($Check)) {
             return $this->sendError('0'); //0 mean the Barcode not found
          }
-
-         return $this->sendResponse($barcode,'1');
+         $materiel = DB::select("select id_materiel,type,modele,N_serie,id_utilisateur,etat
+         from materiel ,agence,departement 
+         where id_departement_fk = id_departement and materiel.id_agence_fk = id_agence and
+          id_materiel ='$barcode'");
+         return $this->sendResponse($materiel,'1');
     }
 
     public function store(Request $request)
@@ -51,12 +55,12 @@ class InterventionController extends BaseController
         $intervention = DB::table('intervention')->insert([
             'id_materiel_fk'=> $input['id_materiel_fk'], 
             'observation'=> $input['observation'], 
-            'datepb' => $input['datepb']
+            'datepb' => date("Y-m-d")
             ]);
-            if (isset($input['etat'])) { //add an and condition to make sure that etat value = En Panne
+            if (isset($input['etat']) && $input['etat'] == 'true') { //add an and condition to make sure that etat value = En Panne
                 DB::table('materiel')
                 ->where('id_materiel',  $input['id_materiel_fk'])
-                ->update(['etat' => $input['etat']]);
+                ->update(['etat' => 'En Panne']);
             }
         return $this->sendResponse($input,'Observation added succesfully');
     }

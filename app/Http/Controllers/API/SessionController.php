@@ -19,8 +19,8 @@ class SessionController extends BaseController
         if (is_null($test)) {
             return $this->sendError('API CODE invalide');
         }
-         //$CodeSession = DB::table('session')->where('code_session', $sessioncode)->first();
-         $CodeSession =  DB::select("select code_session from session where code_session ='$sessioncode'");
+        $CodeSession = DB::table('session')->where('code_session', $sessioncode)->first();
+       //  $CodeSession =  DB::select("select code_session from session where code_session ='$sessioncode'");
          if (is_null($CodeSession)) {
             return $this->sendError('0'); //0 mean the Sessioncode not found
          }
@@ -40,17 +40,26 @@ class SessionController extends BaseController
         $validator =  Validator::make($input, [
         'codebar'=> 'required',
         'etat'=> 'required',
-        'id_session_fk' => 'required',
+        'utilisateur'=>'required',
+        'codesession' => 'required',
         ] );
 
         if ($validator -> fails()) {
-            return $this->sendError('error validation', $validator->errors());
+            return $this->sendError('Error Validation : ', $validator->errors());
         }
-        DB::table('materiel')
-            ->where('id_materiel',  $input['codebar'])
-            ->update(['etat' => $input['etat']]);
+        $codes = $input['codesession'];
+        $IdSess = DB::table('session')->select('id_session')->
+        where('code_session', $codes)->pluck('id_session');
+        $IdSessInt = (int) preg_replace("/[^0-9]/", '', $IdSess);
+        $etat = $input['etat'];
+        $codebar = $input['codebar'];
+        $utilisateur = $input['utilisateur'];
+        DB::update("update  materiel
+        set etat = '$etat', id_utilisateur = '$utilisateur'
+        where id_materiel = '$codebar' ");
+        
             $infosession = DB::table('infosession')->insert([
-                'id_session_fk'=> $input['id_session_fk'], 
+                'id_session_fk'=> $IdSessInt, 
                 'id_materiel_fk'=> $input['codebar']
                 ]);
         return $this->sendResponse($input, 'Etat  updated succesfully');
