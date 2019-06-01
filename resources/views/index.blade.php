@@ -23,8 +23,8 @@
         <a class="navbar-brand" href="{{ URL::to('materiel') }}">Home</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('materiel') }}">View All Assets</a></li>
-        <li><a href="{{ URL::to('materiel/create') }}">Add new Asset</a></li>
+        <li><a href="{{ URL::to('materiel') }}">Liste matériel</a></li>
+        <li><a href="{{ URL::to('materiel/create') }}">Ajouter matériel</a></li>
         <li><a href="{{ URL::to('generate') }}">Session</a></li>
         <li><a href="{{ URL::to('intervention') }}">Intervention</a></li>
         <li><a href="{{ URL::to('sessioninfo') }}">Session information</a></li>
@@ -51,7 +51,7 @@
     
 </nav>
 
-<h1>All the Materiels</h1>
+<h1>Liste Materiel</h1>
 
 <!-- will be used to show any messages -->
 @if (Session::has('message'))
@@ -92,18 +92,18 @@
             <!-- we will also add show, edit, and delete buttons -->
             <td>
 
-                <!-- delete the nerd (uses the destroy method DESTROY /nerds/{id} -->
+                <!-- delete the asset (uses the destroy method DESTROY /asset/{id} -->
                 <!-- we will add this later since its a little more complicated than the other two buttons -->
                 {{ Form::open(array('id'=>'delete-form','url' => 'materiel/' . $value->id_materiel, 'class' => 'pull-right')) }}
                 {{ Form::hidden('_method', 'DELETE') }}
-                {{ Form::submit('Delete', array('class' => 'btn btn-danger','onclick' => 'confirm();')) }}
+                {{ Form::submit('Supprimer', array('class' => 'btn btn-danger','onclick' => 'confirm();')) }}
                 {{ Form::close() }}
                 <br>
-                <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                <a class="btn btn-small btn-success" href="{{ URL::to('materiel/' . $value->id_materiel) }}">Show</a>
+                <!-- show the asset (uses the show method found at GET /asset/{id} -->
+                <a class="btn btn-small btn-success" href="{{ URL::to('materiel/' . $value->id_materiel) }}">Voir</a>
                 <br>
-                <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                <a class="btn btn-small btn-info" href="{{ URL::to('materiel/' . $value->id_materiel . '/edit') }}">Edit</a>
+                <!-- edit this asset (uses the edit method found at GET /asset/{id}/edit -->
+                <a class="btn btn-small btn-info" href="{{ URL::to('materiel/' . $value->id_materiel . '/edit') }}">Modifier</a>
 
             </td>
         </tr>

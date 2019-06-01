@@ -15,8 +15,8 @@
         <a class="navbar-brand" href="{{ URL::to('materiel') }}">Home</a>
     </div>
     <ul class="nav navbar-nav">
-        <li><a href="{{ URL::to('materiel') }}">View All Assets</a></li>
-        <li><a href="{{ URL::to('materiel/create') }}">Add new Asset</a></li>
+        <li><a href="{{ URL::to('materiel') }}">Liste matériel</a></li>
+        <li><a href="{{ URL::to('materiel/create') }}">Ajouter matériel</a></li>
         <li><a href="{{ URL::to('generate') }}">Session</a></li>
         <li><a href="{{ URL::to('intervention') }}">Intervention</a></li>
         <li><a href="{{ URL::to('sessioninfo') }}">Session information</a></li>
