@@ -16,7 +16,9 @@ class InterventionController extends BaseController  {
     }
 public function index()
     {
-        $Intervention = DB::table('intervention')->get();
+        $Intervention = DB::table('intervention')
+        ->orderBy('datepb', 'asc')
+        ->get();
                return View::make('intervention') ->with('Intervention', $Intervention);;
     }
 

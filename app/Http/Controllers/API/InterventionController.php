@@ -35,7 +35,7 @@ class InterventionController extends BaseController
          $materiel = DB::select("select id_materiel,type,modele,N_serie,id_utilisateur,etat
          from materiel ,agence,departement 
          where id_departement_fk = id_departement and materiel.id_agence_fk = id_agence and
-          id_materiel ='$barcode' order by datepb asc" );
+          id_materiel ='$barcode'" );
          return $this->sendResponse($materiel,'1');
     }
 
