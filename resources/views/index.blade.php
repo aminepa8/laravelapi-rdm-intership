@@ -117,8 +117,8 @@
     function confirm(){
         event.preventDefault();
         swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this Asset !",
+  title: "Êtes-vous sûr ?",
+  text: "Une fois supprimé, vous ne pourrez plus récupérer ce matériel !",
   icon: "warning",
   buttons: true,
   dangerMode: true,

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Asset</title>
+    <title>Modifier matériel</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
      <link  rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.css') }}">  
 
@@ -50,7 +50,7 @@
         </ul>
 </nav>
 
-<h1>Edit Materiel Barcode : {{ $materiel->id_materiel }}</h1>
+<h1>Modifier matériel  Barcode : {{ $materiel->id_materiel }}</h1>
 
 <!-- if there are creation errors, they will show here -->
 @if ($errors->any())
@@ -139,7 +139,7 @@
     </div>
 </div>
 <div class="text-center">
-    {{ Form::submit('Edit the Asset!', array('class' => 'btn btn-primary')) }}
+    {{ Form::submit('Modifier', array('class' => 'btn btn-primary')) }}
 </div>
 {{ Form::close() }}
 </div>
